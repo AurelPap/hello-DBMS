@@ -9,34 +9,27 @@
   
   <h1>Database</h1>
 
-  <select id="countrySelector">
+  <select id="countrySelector" onchange="updateContent(this.value)">
     {% for country in countries %}
     <option value="{{ country[0] }}">{{ country[0] }}</option>
     {% endfor %}
   </select>
 
 
-  <table>
-    <thead>
-      <tr>
-        {% for col in cols %}
-          <th>{{ col[1] }}</th>
-        {% endfor %}
-      </tr>
-    </thead>
-    <tbody>
-      {% for country in query_result %}
-          <tr>
-              {% for cell in country %}
-                <td>{{ cell }}</td>
-              {% endfor %}
-          </tr>
-      {% endfor %}
-  </tbody>
-  </table>
+  <div id="content">
+    {% include 'content_partial.html' %}
+  </div>
 
-
-  <h3>damn {{ query_result[1] }}</h2>
+  <script>
+    function updateContent(selectedCountry) {
+        // Utilisation de fetch pour effectuer une requête AJAX
+        fetch(`/update_content/${selectedCountry}`)
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById("content").innerHTML = data;
+          });
+    }
+  </script>
 
 </body>
 

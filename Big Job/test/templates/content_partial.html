@@ -1,0 +1,18 @@
+<table>
+    <thead>
+    <tr>
+        {% for col in cols %}
+        <th>{{ col[1] }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for country in query_result %}
+        <tr>
+            {% for cell in country %}
+                <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
