@@ -1,0 +1,43 @@
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #a1b2c3; /* Unrecognizable background color */
+    color: #d4e5f6; /* Unrecognizable text color */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Heading Styles */
+h1 {
+    color: #008080; /* Unrecognizable color for h1 */
+    font-size: 89px;
+}
+
+h2 {
+    color: #7b8c9d; /* Unrecognizable color for h2 */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #9a8b7c;
+    padding: 8px;
+}
+
+th {
+    background-color: #1d2e3f; /* Unrecognizable color for table header */
+    color: #f5e6d7; /* Unrecognizable text color for table header */
+}
+
+tr:nth-child(even) {
+    background-color: #6f7e8d; /* Unrecognizable color for even rows */
+}
+
+tr:nth-child(odd) {
+    background-color: #3b4c5d; /* Unrecognizable color for odd rows */
+}

@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <title>SQLite Flask App</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+
+<body>
+  
+  <h1>Database</h1>
+
+  <select id="countrySelector">
+    {% for country in countries %}
+    <option value="{{ country[0] }}">{{ country[0] }}</option>
+    {% endfor %}
+  </select>
+
+
+  <table>
+    <thead>
+      <tr>
+        {% for col in cols %}
+          <th>{{ col[1] }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for country in query_result %}
+          <tr>
+              {% for cell in country %}
+                <td>{{ cell }}</td>
+              {% endfor %}
+          </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+
+
+  <h3>damn {{ query_result[1] }}</h2>
+
+</body>
+
+</html>
