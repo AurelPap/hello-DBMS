@@ -23,3 +23,7 @@
     {% endfor %}
 </tbody>
 </table>
+
+{% if affichage == "affichage 2" %}
+<p>L'émission totale des différentes sources du pays {{ pays }} est de {{ somme[0] }} gCO2/kWh</p>
+{% endif %}

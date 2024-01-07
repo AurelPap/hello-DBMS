@@ -43,11 +43,22 @@ def update_content(selected_country):
 		WHEN "Source" = "Renouvelable (Solaire)" THEN CAST((SELECT Renewable FROM country WHERE Country = "{selected_country}") * (SELECT "Médiane de gCO2/kWh" FROM emmissions_par_source WHERE "Source" = "Renouvelable (Solaire)")/100 AS INTEGER)
 		WHEN "Source" = "Nucléaire" THEN CAST((SELECT Nuclear FROM country WHERE Country = "{selected_country}") * (SELECT "Médiane de gCO2/kWh" FROM emmissions_par_source WHERE "Source" = "Nucléaire")/100 AS INTEGER)
 	END AS "Contribution en émission gCO2/kWh"
-FROM emmissions_par_source''').fetchall()
+    FROM emmissions_par_source''').fetchall()
+    somme = conn.execute(f'''SELECT 
+	SUM( 
+	CASE 
+		WHEN "Source" = "Charbon" THEN CAST((SELECT Coal FROM country WHERE Country = "{selected_country}") * (SELECT "Médiane de gCO2/kWh" FROM emmissions_par_source WHERE "Source" = "Charbon")/100 AS INTEGER)
+		WHEN "Source" = "Gaz naturel" THEN CAST((SELECT Gas FROM country WHERE Country = "{selected_country}") * (SELECT "Médiane de gCO2/kWh" FROM emmissions_par_source WHERE "Source" = "Gaz naturel")/100 AS INTEGER)
+		WHEN "Source" = "Pétrole" THEN CAST((SELECT Oil FROM country WHERE Country = "{selected_country}") * (SELECT "Médiane de gCO2/kWh" FROM emmissions_par_source WHERE "Source" = "Pétrole")/100 AS INTEGER)
+		WHEN "Source" = "Hydraulique" THEN CAST((SELECT Hydro FROM country WHERE Country = "{selected_country}") * (SELECT "Médiane de gCO2/kWh" FROM emmissions_par_source WHERE "Source" = "Hydraulique")/100 AS INTEGER)
+		WHEN "Source" = "Renouvelable (Solaire)" THEN CAST((SELECT Renewable FROM country WHERE Country = "{selected_country}") * (SELECT "Médiane de gCO2/kWh" FROM emmissions_par_source WHERE "Source" = "Renouvelable (Solaire)")/100 AS INTEGER)
+		WHEN "Source" = "Nucléaire" THEN CAST((SELECT Nuclear FROM country WHERE Country = "{selected_country}") * (SELECT "Médiane de gCO2/kWh" FROM emmissions_par_source WHERE "Source" = "Nucléaire")/100 AS INTEGER)
+	END) AS "somme"
+    FROM emmissions_par_source''').fetchone()
     cols = ["Source", "% d’utilisation", "Médiane de gCO2/kWh", "Contribution en émission gCO2/kWh"]
     conn.close()
     affichage = "affichage 2"
-    return render_template('content_partial.html', query_result=result, cols=cols, affichage=affichage, pays=selected_country)
+    return render_template('content_partial.html', query_result=result, cols=cols, affichage=affichage, pays=selected_country, somme = somme)
 
 
 if __name__ == '__main__':
