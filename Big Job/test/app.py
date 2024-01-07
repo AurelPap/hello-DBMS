@@ -13,7 +13,7 @@ def get_db_connection():
 @app.route('/')
 def index():
     conn = get_db_connection()
-    query_result = conn.execute('SELECT * FROM country LIMIT 10').fetchall()
+    query_result = conn.execute('SELECT * FROM country').fetchall()
     cols = conn.execute(f"PRAGMA table_info({'country'})").fetchall()
     countries = conn.execute('SELECT Country FROM country').fetchall()
     conn.close()
@@ -58,7 +58,7 @@ def update_content(selected_country):
     cols = ["Source", "% d’utilisation", "Médiane de gCO2/kWh", "Contribution en émission gCO2/kWh"]
     conn.close()
     affichage = "affichage 2"
-    return render_template('content_partial.html', query_result=result, cols=cols, affichage=affichage, pays=selected_country, somme = somme)
+    return render_template('content_partial.html', query_result=result, cols=cols, affichage=affichage, pays=selected_country, somme = somme[0])
 
 
 if __name__ == '__main__':

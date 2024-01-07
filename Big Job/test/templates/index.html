@@ -7,7 +7,7 @@
 
 <body>
   
-  <h1>Database</h1>
+  <h1>Émission CO2</h1>
 
   <select id="countrySelector" onchange="updateContent(this.value)">
     {% for country in countries %}
@@ -30,6 +30,27 @@
           });
     }
   </script>
+
+<script>
+  function calculate() {
+      // Récupérer la valeur de l'input
+      var inputNumber = document.getElementById('inputNumber').value;
+
+      // Vérifier si la valeur est un nombre
+      if (isNaN(inputNumber)) {
+          alert('Veuillez entrer un nombre valide.');
+          return;
+      }
+
+      // Effectuer le calcul
+      var sommeValue = document.querySelector('th[data-somme]').getAttribute('data-somme');
+
+      var result = inputNumber * 24 * 365 * sommeValue/1000;
+
+      // Afficher le résultat
+      document.getElementById('result').innerHTML = 'Le CO2 émis pour ' + inputNumber + ' kWh est ' + result + ' kgCO2.';
+  }
+</script>
 
 </body>
 

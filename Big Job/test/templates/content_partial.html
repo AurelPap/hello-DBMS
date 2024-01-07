@@ -21,9 +21,20 @@
             {% endfor %}
         </tr>
     {% endfor %}
+    {% if affichage == "affichage 2" %}
+    <tfoot>
+        <th colspan="{{ cols|length - 1 }}">SOMME</th>
+        <th data-somme = "{{ somme }}" >{{ somme }} gCO2/kWh</th>
+    </tfoot>
+    {% endif %}
 </tbody>
 </table>
 
 {% if affichage == "affichage 2" %}
-<p>L'émission totale des différentes sources du pays {{ pays }} est de {{ somme[0] }} gCO2/kWh</p>
+<label for="inputNumber">Choisissez une puissance pour savoir combien de CO2 est rejeté pour maintenir celle-ci en continue durant une année:</label>
+<input type="number" id="inputNumber" placeholder="Entrez un nombre" required>
+
+<button onclick="calculate()">Calculer le CO2 émis</button>
+
+<div id="result"></div>
 {% endif %}

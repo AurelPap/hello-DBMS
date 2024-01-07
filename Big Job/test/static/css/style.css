@@ -10,7 +10,7 @@ body {
 /* Heading Styles */
 h1 {
     color: #008080; /* Unrecognizable color for h1 */
-    font-size: 89px;
+    font-size: 50px;
 }
 
 h2 {
@@ -42,4 +42,8 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
     background-color: #3b4c5d; /* Unrecognizable color for odd rows */
+}
+
+p {
+    color: #444444;
 }
