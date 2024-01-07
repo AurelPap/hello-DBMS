@@ -1,8 +1,15 @@
+{% if affichage == "affichage 2" %}
+<h2>{{ pays }}</h2>
+{% endif %}
 <table>
     <thead>
     <tr>
         {% for col in cols %}
+        {% if affichage == "affichage 1" %}
         <th>{{ col[1] }}</th>
+        {% elif affichage == "affichage 2" %}
+        <th>{{ col }}</th>
+        {% endif %}
         {% endfor %}
     </tr>
     </thead>

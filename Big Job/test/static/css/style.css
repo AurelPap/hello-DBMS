@@ -14,7 +14,9 @@ h1 {
 }
 
 h2 {
-    color: #7b8c9d; /* Unrecognizable color for h2 */
+    color: #ff5757; /* Unrecognizable color for h2 */
+    text-align: center;
+    padding: 10px;
 }
 
 /* Table Styles */
