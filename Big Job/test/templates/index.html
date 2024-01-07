@@ -46,9 +46,13 @@
       var sommeValue = document.querySelector('th[data-somme]').getAttribute('data-somme');
 
       var result = inputNumber * 24 * 365 * sommeValue/1000;
+      var arbre = result / 25;
+
+      // Arrondir arbres à 2 chiffres après la virgule
+      arbre = arbre.toFixed(2);
 
       // Afficher le résultat
-      document.getElementById('result').innerHTML = 'Le CO2 émis pour ' + inputNumber + ' kWh est ' + result + ' kgCO2.';
+      document.getElementById('result').innerHTML = 'Le CO2 émis pour ' + inputNumber + ' kWh est ' + result + ' kgCO2.<br> Il faut ' + arbre + ' arbres pour compenser ces émissions';
   }
 </script>
 
